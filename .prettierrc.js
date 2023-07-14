@@ -7,7 +7,7 @@ module.exports = {
     printWidth: 120,
     semi: true,
     jsxBracketSameLine: false,
-    jsxSingleQuote: false,
+    jsxSingleQuote: true,
     arrowParens: 'always',
   };
   

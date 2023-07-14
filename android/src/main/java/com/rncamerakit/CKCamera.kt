@@ -180,11 +180,11 @@ class CKCamera(context: ThemedReactContext) : FrameLayout(context), LifecycleObs
             orientationListener!!.enable()
 
             val scaleDetector =  ScaleGestureDetector(context, object: ScaleGestureDetector.SimpleOnScaleGestureListener() {
-                override fun onScale(detector: ScaleGestureDetector): Boolean {
+                override fun onScale(detector: ScaleGestureDetector?): Boolean {
                     if (zoomMode == "off") return true
                     val cameraControl = camera?.cameraControl ?: return true
                     val zoom = camera?.cameraInfo?.zoomState?.value?.zoomRatio ?: return true
-                    val scaleFactor = detector.scaleFactor
+                    val scaleFactor = detector?.scaleFactor ?: return true
                     val scale = zoom * scaleFactor
                     cameraControl.setZoomRatio(scale)
                     return true
@@ -501,7 +501,7 @@ class CKCamera(context: ThemedReactContext) : FrameLayout(context), LifecycleObs
             val height: Int = convertDeviceHeightToSupportedAspectRatio(actualPreviewWidth, actualPreviewHeight)
             barcodeFrame!!.setFrameColor(frameColor)
             barcodeFrame!!.setLaserColor(laserColor)
-            (barcodeFrame as View).layout(0, 0, this.effectLayer.width, this.effectLayer.height)
+            (barcodeFrame as View).layout(0, 0, actualPreviewWidth, height)
             addView(barcodeFrame)
         } else if (barcodeFrame != null) {
             removeView(barcodeFrame)

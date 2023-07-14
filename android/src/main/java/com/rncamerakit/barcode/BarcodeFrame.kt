@@ -6,8 +6,6 @@ import android.view.View
 import androidx.annotation.ColorInt
 
 import com.rncamerakit.R
-import kotlin.math.max
-import kotlin.math.min
 
 class BarcodeFrame(context: Context) : View(context) {
     private var borderPaint: Paint = Paint()
@@ -31,23 +29,14 @@ class BarcodeFrame(context: Context) : View(context) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        // val marginHeight = 40
-        val marginWidth = 40
-        val frameMaxWidth = 1200
-        val frameMaxHeight = 600
-        val frameMinWidth = 100
-        val frameMinHeight = 100
-        frameWidth = max(frameMinWidth, min(frameMaxWidth, measuredWidth - (marginWidth * 2)))
-        // frameHeight = max(frameMinHeight, min(frameMaxHeight, measuredHeight - (marginHeight * 2)))
-        frameHeight = max(frameMinHeight, min(frameMaxWidth, measuredWidth - (marginWidth * 2)))
-        frameRect.left = (measuredWidth / 2) - (frameWidth / 2)
-        frameRect.right = (measuredWidth / 2) + (frameWidth / 2)
-
-        val marginHeight = ((measuredHeight - frameHeight) / 4).toInt()
-        // frameRect.top = (measuredHeight / 2) - (frameHeight / 2)
-        // frameRect.bottom = (measuredHeight / 2) + (frameHeight / 2)
+        val marginWidth = width / WIDTH_SCALE
+        frameWidth = measuredWidth
+        frameHeight = width - 2 * marginWidth
+        val marginHeight = ((height - frameHeight) / 4).toInt()
+        frameRect.left = marginWidth
+        frameRect.right = width - marginWidth
         frameRect.top = marginHeight
-        frameRect.bottom = (measuredHeight - 3 * marginHeight).toInt()
+        frameRect.bottom = height - 3 * marginHeight
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -86,7 +75,9 @@ class BarcodeFrame(context: Context) : View(context) {
 
     companion object {
         private const val STROKE_WIDTH = 5
-        private const val ANIMATION_SPEED = 4
+        private const val ANIMATION_SPEED = 8
+        private const val WIDTH_SCALE = 7
+        private const val HEIGHT_SCALE = 2.75
     }
 
     init {
