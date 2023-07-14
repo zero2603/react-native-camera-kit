@@ -32,11 +32,11 @@ class BarcodeFrame(context: Context) : View(context) {
         val marginWidth = width / WIDTH_SCALE
         frameWidth = measuredWidth
         frameHeight = width - 2 * marginWidth
-        val marginHeight = ((height - frameHeight) / 4).toInt()
+        val marginHeight = ((height - frameHeight) / 5).toInt()
         frameRect.left = marginWidth
         frameRect.right = width - marginWidth
         frameRect.top = marginHeight
-        frameRect.bottom = height - 3 * marginHeight
+        frameRect.bottom = height - 4 * marginHeight
     }
 
     override fun onDraw(canvas: Canvas) {
