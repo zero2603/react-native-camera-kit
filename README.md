@@ -31,6 +31,10 @@
   </tr>
 </table>
 
+## About this fork
+
+This fork changes frame of QR / barcode scanner to square instead of rectangle.
+
 ## Installation (RN > 0.60)
 
 ```bash

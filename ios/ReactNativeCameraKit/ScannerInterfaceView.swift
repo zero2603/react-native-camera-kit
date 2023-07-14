@@ -18,7 +18,8 @@ class ScannerInterfaceView: UIView {
     // MARK: - Constants
 
     private let frameOffset: CGFloat = 30
-    private let frameHeight: CGFloat = 200
+    private let frameWidth: CGFloat = bounds.size.width - 2 * frameOffset
+    private let frameHeight: CGFloat = bounds.size.width - 2 * frameOffset
     private let overlayColor: UIColor = .black.withAlphaComponent(0.4)
 
     // MARK: - Lifecycle
@@ -46,8 +47,9 @@ class ScannerInterfaceView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
 
-        frameView.frame = CGRect(x: 0, y: 0, width: bounds.size.width - 2 * frameOffset, height: frameHeight)
-        frameView.center = center
+        // draw square frame for QR scanner
+        frameView.frame = CGRect(x: frameOffset, y: 2 * frameOffset, width: frameWidth, height: frameHeight)
+        // frameView.center = center
 
         updateOverlaySize(frameView.frame)
     }
