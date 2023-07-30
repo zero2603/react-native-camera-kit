@@ -80,7 +80,7 @@ export default class CameraScreen extends Component {
     }
     renderCamera() {
         return (<View style={styles.cameraContainer}>
-        {this.isCaptureRetakeMode() ? (<Image style={{ flex: 1, justifyContent: 'flex-end' }} source={{ uri: this.state.imageCaptured.uri }}/>) : (<Camera ref={(cam) => (this.camera = cam)} style={{ flex: 1, justifyContent: 'flex-end' }} cameraType={this.state.cameraType} flashMode={this.state.flashData.mode} torchMode={this.state.torchMode ? 'on' : 'off'} focusMode={this.props.focusMode} zoomMode={this.props.zoomMode} ratioOverlay={this.state.ratios[this.state.ratioArrayPosition]} showFrame={this.props.showFrame} scanBarcode={this.props.scanBarcode} laserColor={this.props.laserColor} frameColor={this.props.frameColor} onReadCode={this.props.onReadCode}/>)}
+        {this.isCaptureRetakeMode() ? (<Image style={{ flex: 1, justifyContent: 'flex-end' }} source={{ uri: this.state.imageCaptured.uri }}/>) : (<Camera ref={(cam) => (this.camera = cam)} style={{ flex: 1, justifyContent: 'flex-end' }} cameraType={this.state.cameraType} cameraRatio={this.props.cameraRatio} flashMode={this.state.flashData.mode} torchMode={this.state.torchMode ? 'on' : 'off'} focusMode={this.props.focusMode} zoomMode={this.props.zoomMode} ratioOverlay={this.state.ratios[this.state.ratioArrayPosition]} showFrame={this.props.showFrame} scanBarcode={this.props.scanBarcode} laserColor={this.props.laserColor} frameColor={this.props.frameColor} onReadCode={this.props.onReadCode}/>)}
       </View>);
     }
     numberOfImagesTaken() {

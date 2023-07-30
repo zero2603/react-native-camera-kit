@@ -286,7 +286,7 @@ class CKCamera(context: ThemedReactContext) : FrameLayout(context), LifecycleObs
      *  @return suitable aspect ratio
      */
     private fun aspectRatio(width: Int, height: Int): Int {
-        if (cameraRatio) {
+        if (cameraRatio != "") {
             if (cameraRatio == "4:3") return AspectRatio.RATIO_4_3
             else if (cameraRatio == "16:9") return AspectRatio.RATIO_16_9
         }

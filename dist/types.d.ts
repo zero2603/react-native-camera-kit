@@ -1,4 +1,4 @@
-export declare type CameraApi = {
+export type CameraApi = {
     capture: () => Promise<{
         uri: string;
     }>;

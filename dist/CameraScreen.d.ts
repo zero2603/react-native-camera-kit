@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { ImageStyle } from 'react-native';
 export declare enum CameraType {
     Front = "front",
     Back = "back"
 }
-export declare type Props = {
+export type Props = {
     focusMode?: string;
     zoomMode?: string;
+    cameraRatio?: string;
     ratioOverlay?: string;
     ratioOverlayColor?: string;
     allowCaptureRetake: boolean;
@@ -28,7 +29,7 @@ export declare type Props = {
     onReadCode: (event: any) => void;
     onBottomButtonPressed: (event: any) => void;
 };
-declare type State = {
+type State = {
     captureImages: any[];
     flashData: any;
     torchMode: boolean;
@@ -51,23 +52,23 @@ export default class CameraScreen extends Component<Props, State> {
     constructor(props: Props);
     componentDidMount(): void;
     isCaptureRetakeMode(): boolean;
-    renderFlashButton(): false | JSX.Element;
-    renderTorchButton(): false | JSX.Element;
+    renderFlashButton(): false | React.JSX.Element;
+    renderTorchButton(): false | React.JSX.Element;
     renderSwitchCameraButton(): any;
-    renderTopButtons(): false | JSX.Element;
-    renderCamera(): JSX.Element;
+    renderTopButtons(): false | React.JSX.Element;
+    renderCamera(): React.JSX.Element;
     numberOfImagesTaken(): number | "1" | "";
     renderCaptureButton(): any;
-    renderRatioStrip(): JSX.Element | null;
+    renderRatioStrip(): React.JSX.Element | null;
     sendBottomButtonPressedAction(type: string, captureRetakeMode: boolean, image: null): void;
     onButtonPressed(type: string): void;
-    renderBottomButton(type: string): JSX.Element;
-    renderBottomButtons(): false | JSX.Element;
+    renderBottomButton(type: string): React.JSX.Element;
+    renderBottomButtons(): false | React.JSX.Element;
     onSwitchCameraPressed(): void;
     onSetFlash(): void;
     onSetTorch(): void;
     onCaptureImagePressed(): Promise<void>;
     onRatioButtonPressed(): void;
-    render(): JSX.Element;
+    render(): React.JSX.Element;
 }
 export {};
