@@ -28,6 +28,7 @@ export enum CameraType {
 export type Props = {
   focusMode?: string,
   zoomMode?: string,
+  cameraRatio?: string,
   ratioOverlay?: string,
   ratioOverlayColor?: string,
   allowCaptureRetake: boolean,
@@ -185,6 +186,7 @@ export default class CameraScreen extends Component<Props, State> {
             ref={(cam: any) => (this.camera = cam)}
             style={{ flex: 1, justifyContent: 'flex-end' }}
             cameraType={this.state.cameraType}
+            cameraRatio={this.props.cameraRatio}
             flashMode={this.state.flashData.mode}
             torchMode={this.state.torchMode ? 'on' : 'off'}
             focusMode={this.props.focusMode}

@@ -55,6 +55,11 @@ class CKCameraManager : SimpleViewManager<CKCamera>() {
         view.setCameraType(type)
     }
 
+    @ReactProp(name = "cameraRatio")
+    fun setCameraRatio(view: CKCamera, cameraRatio: String) {
+        view.setCameraRatio(cameraRatio)
+    }
+
     @ReactProp(name = "flashMode")
     fun setFlashMode(view: CKCamera, mode: String?) {
         view.setFlashMode(mode)

@@ -91,6 +91,7 @@ class CKCamera(context: ThemedReactContext) : FrameLayout(context), LifecycleObs
     private var lensType = CameraSelector.LENS_FACING_BACK
     private var autoFocus = "on"
     private var zoomMode = "on"
+    private var cameraRatio = ""
 
     // Barcode Props
     private var scanBarcode: Boolean = false
@@ -285,6 +286,11 @@ class CKCamera(context: ThemedReactContext) : FrameLayout(context), LifecycleObs
      *  @return suitable aspect ratio
      */
     private fun aspectRatio(width: Int, height: Int): Int {
+        if (cameraRatio) {
+            if (cameraRatio == "4:3") return AspectRatio.RATIO_4_3
+            else if (cameraRatio == "16:9") return AspectRatio.RATIO_16_9
+        }
+
         val previewRatio = max(width, height).toDouble() / min(width, height)
         if (abs(previewRatio - RATIO_4_3_VALUE) <= abs(previewRatio - RATIO_16_9_VALUE)) {
             return AspectRatio.RATIO_4_3
@@ -487,6 +493,10 @@ class CKCamera(context: ThemedReactContext) : FrameLayout(context), LifecycleObs
         val restartCamera = lensType != newLensType
         lensType = newLensType
         if (restartCamera) bindCameraUseCases()
+    }
+
+    fun setCameraRatio(ratio: String = "") {
+        cameraRatio = ratio
     }
 
     fun setOutputPath(path: String) {
