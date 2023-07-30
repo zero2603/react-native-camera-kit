@@ -66,6 +66,16 @@ RCT_ENUM_CONVERTER(CKCameraZoomMode, (@{
 
 @end
 
+@implementation RCTConvert(CKCameraRatio)
+
+RCT_ENUM_CONVERTER(CKCameraRatio, (@{
+                                        @"": @(CKCameraRatioDefault),
+                                        @"4:3": @(CKCameraRatio4_3),
+                                        @"16:9": @(CKCameraRatio16_9),
+                                        }), CKCameraRatioDefault, integerValue)
+
+@end
+
 @interface CKCamera () <AVCaptureMetadataOutputObjectsDelegate>
 
 
@@ -112,6 +122,7 @@ RCT_ENUM_CONVERTER(CKCameraZoomMode, (@{
 @property (nonatomic) AVCaptureTorchMode torchMode;
 @property (nonatomic) CKCameraFocusMode focusMode;
 @property (nonatomic) CKCameraZoomMode zoomMode;
+@property (nonatomic) CKCameraRatio cameraRatio;
 @property (nonatomic, strong) NSString* ratioOverlay;
 @property (nonatomic, strong) UIColor *ratioOverlayColor;
 @property (nonatomic, strong) RCTDirectEventBlock onOrientationChange;
@@ -210,6 +221,7 @@ RCT_ENUM_CONVERTER(CKCameraZoomMode, (@{
         self.zoomMode = CKCameraZoomModeOn;
         self.flashMode = CKCameraFlashModeAuto;
         self.focusMode = CKCameraFocusModeOn;
+        self.cameraRatio = CKCameraRatioDefault;
         
         self.frameColor = [UIColor whiteColor];
         self.laserColor = [UIColor redColor];
@@ -286,6 +298,15 @@ RCT_ENUM_CONVERTER(CKCameraZoomMode, (@{
                 [self removeGestureRecognizer:object];
             }
         }
+    }
+}
+
+- (void)setCameraRatio:(CKCameraRatio*)ratio {
+    _cameraRatio = ratio;
+    if (ratio == CKCameraRatio16_9) {
+        self.session.sessionPreset = AVCaptureSessionPresetHigh;
+    } else {
+        self.session.sessionPreset = AVCaptureSessionPresetPhoto;
     }
 }
 

@@ -22,6 +22,7 @@ RCT_EXPORT_VIEW_PROPERTY(flashMode, CKCameraFlashMode)
 RCT_EXPORT_VIEW_PROPERTY(torchMode, CKCameraTorchMode)
 RCT_EXPORT_VIEW_PROPERTY(focusMode, CKCameraFocusMode)
 RCT_EXPORT_VIEW_PROPERTY(zoomMode, CKCameraZoomMode)
+RCT_EXPORT_VIEW_PROPERTY(cameraRatio, CKCameraRatio)
 RCT_EXPORT_VIEW_PROPERTY(ratioOverlay, NSString)
 RCT_EXPORT_VIEW_PROPERTY(ratioOverlayColor, UIColor)
 

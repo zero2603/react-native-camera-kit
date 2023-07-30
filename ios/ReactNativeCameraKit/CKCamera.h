@@ -67,6 +67,18 @@ typedef NS_ENUM(NSInteger, CKCameraZoomMode) {
 
 @end
 
+typedef NS_ENUM(NSInteger, CKCameraRatio) {
+    CKCameraRatioDefault,
+    CKCameraRatio4_3,
+    CKCameraRatio16_9,
+};
+
+@interface RCTConvert(CKCameraRatio)
+
++ (CKCameraRatio)CKCameraRatio:(id)json;
+
+@end
+
 
 @interface CKCamera : UIView
 
