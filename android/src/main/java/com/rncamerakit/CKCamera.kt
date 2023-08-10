@@ -1,5 +1,6 @@
 package com.rncamerakit
 
+import android.provider.Settings
 import android.Manifest
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -172,7 +173,11 @@ class CKCamera(context: ThemedReactContext) : FrameLayout(context), LifecycleObs
                     } else if (orientation in 45..134) {
                         newOrientation = Surface.ROTATION_270
                     }
-                    if (newOrientation != imageCapture.targetRotation) {
+
+                    // check device rotation is locked or not
+                    var rotationSetting: Int = Settings.System.getInt(context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION)
+
+                    if (newOrientation != imageCapture.targetRotation && rotationSetting == 1) {
                         imageCapture.targetRotation = newOrientation
                         onOrientationChange(newOrientation)
                     }
